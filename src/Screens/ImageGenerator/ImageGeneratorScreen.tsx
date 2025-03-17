@@ -24,7 +24,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import { API_KEY } from "../../config/ApiKey";
+import { API_KEY } from "../../../ApiKey";
 
 const ImageGeneratorScreen = () => {
   const [prompt, setPrompt] = useState<string>("");
