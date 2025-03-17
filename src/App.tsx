@@ -20,20 +20,12 @@ import {
   Grid,
   Stack,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BrushIcon from "@mui/icons-material/Brush";
 import DownloadIcon from "@mui/icons-material/Download";
 import RefreshIcon from "@mui/icons-material/Refresh";
-
-// Custom MUI Theme
-const theme = createTheme({
-  palette: {
-    primary: { main: "#1976d2" },
-    secondary: { main: "#26a69a" },
-    background: { default: "#f5f5f5" },
-  },
-});
+import { theme } from "./config/theme/theme";
 
 function App() {
   const [prompt, setPrompt] = useState<string>("");
@@ -93,7 +85,7 @@ function App() {
                     onChange={(e) => setPrompt(e.target.value)}
                     fullWidth
                     multiline
-                    rows={3}
+                    rows={5}
                     variant="outlined"
                   />
                   <Accordion>
