@@ -24,7 +24,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import { API_KEY } from "../../../ApiKey";
+import { config } from "dotenv";
 
 const ImageGeneratorScreen = () => {
   const [prompt, setPrompt] = useState<string>("");
@@ -36,29 +36,30 @@ const ImageGeneratorScreen = () => {
   const [error, setError] = useState<string | null>(null);
 
   const handleGenerate = async () => {
+    config();
     setLoading(true);
     setError(null);
-  
+
     try {
       const response = await fetch(
-        'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2',
+        "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2",
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Authorization': `Bearer ${API_KEY}`,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.TOKEN}`,
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             inputs: `${prompt}, Style: ${style}, Color Mode: ${colorMode}`,
           }),
         }
       );
-  
-      if (!response.ok) throw new Error('Hugging Face API request failed');
+
+      if (!response.ok) throw new Error("Hugging Face API request failed");
       const imageBlob = await response.blob();
       setImageUrl(URL.createObjectURL(imageBlob));
     } catch (err: any) {
-      setError(err.message || 'Failed to generate image');
+      setError(err.message || "Failed to generate image");
     } finally {
       setLoading(false);
     }
