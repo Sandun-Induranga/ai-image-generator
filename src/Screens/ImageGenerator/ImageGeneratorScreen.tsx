@@ -36,7 +36,6 @@ const ImageGeneratorScreen = () => {
   const [error, setError] = useState<string | null>(null);
 
   const handleGenerate = async () => {
-    config();
     setLoading(true);
     setError(null);
 
